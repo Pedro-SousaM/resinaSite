@@ -6,23 +6,140 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./public/css/resina.css">
+    <link rel="stylesheet" href="./public/css/resina.css"> 
+    <style>
+        .freteText {
+  position: absolute;
+  top: 15vh;
+  left: 48vw;
+  transform: translate(-50%);
+  background-color: plum;
+  border: 2px solid orchid;
+  height: 6vh;
+  width: 14vw;
+  font-size: 30px;
+  padding-left: 2vw;
+  border-bottom-left-radius: 16px;
+  border-top-left-radius: 16px;
+  color: white;
+  cursor: text;
+}
+
+.freteText::-moz-placeholder {
+  color: rgba(192, 147, 194, 0.6745098039);
+}
+
+.freteText::placeholder {
+  color: rgba(192, 147, 194, 0.6745098039);
+}
+
+.freteText:focus + .freteCheck {
+  outline: 2px purple solid;
+}
+
+.freteText:focus {
+  outline: 2px purple solid;
+}
+
+.freteCheck {
+  position: absolute;
+  top: 15vh;
+  left: 52.01vw;
+  background-color: plum;
+  border: 2px solid orchid;
+  height: 6.4vh;
+  width: 9vw;
+  font-size: 30px;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  padding-left: 0.3vw;
+  font-family: "Lobster", cursive;
+  color: white;
+  cursor: pointer;
+}
+
+.resposta {
+  position: absolute;
+  top: 30vh;
+  left: 50vw;
+  transform: translate(-50%);
+}
+
+.switch {
+  position: absolute;
+  top: 23.2vh;
+  left: 39.9vw;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: plum;
+  border: 2px solid orchid;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #ec21f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.ask {
+  position: absolute;
+  font-size: 1vw;
+  width: 11vw;
+  top: 0.4vh;
+  left: 4.2vw;
+}
+    </style>
 </head>
 
 <body>
     <div class="main-container">
         <header>
-            <div class="up-header">
+            <div class="up-header">  
+                <a href="https://www.instagram.com/uau.artesemresina/">
                 <svg class="up-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path
                         d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z">
                     </path>
-                </svg>
-                </svg>
+                </svg> </a>
+                <a href="https://api.whatsapp.com/message/G4ZNA43LTGT7A1?autoload=1&app_absent=0">
                 <svg class="up-icon" width="24" height="24" viewBox="0 0 24 24">
                     <path
                         d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
-                </svg>
+                </svg></a>
             </div>
             <div class="header">
                 <img src="./public/img/White.jpg" class="img-logo" alt="">
@@ -44,7 +161,6 @@
                     <input id="search" class="home-button search" type="text" placeholder="Procurar">
                 </form>
         </header>
-    </div>
     </div>
     <div class="side-menu">
         <div class="category">
@@ -185,10 +301,24 @@
         </div> 
         <div class="freteContainer">
             <div class="Ftext">
-                Calcule o frete para seu endereço !
+                Calcule o frete para seu endereço ! 
+            </div> 
+            <div class="Frequest">
+                <input type="text" name="input1" placeholder="CEP" class="freteText"> 
+                <input type="button" value="Calcular" class="freteCheck">  
+                <label class="switch" > 
+                    <div class="ask">Encomenda grande ?</div>
+                    <input type="checkbox" class = "checkingbox">
+                    <span class="slider"></span>
+                  </label>
+                <div class="resposta">
+                    
+                </div> 
             </div>
         </div>
-    </div>
+    </div>  
+    <div class="bottomcontainer"></div>
+    <script type="module"src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script src="./public/resina.js"></script>
 </body>
 

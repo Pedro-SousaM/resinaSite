@@ -582,15 +582,15 @@ $base: 0.6rem;
   height: 28vh;
   margin: 10px;
   width: 17.8vw;
-  transition: 1.1s;
+  transition: 0.8s;
   display: block;
   top: 0;
   left: 0;
   border-radius: 10px;
   position: relative; 
-  object-fit: cover; 
+  object-fit: fill; 
   z-index: 0; 
-
+  cursor: pointer;
 }
 .r:hover {
   transform: scale(1.25); 
@@ -598,7 +598,9 @@ $base: 0.6rem;
 } 
 .freteContainer{
   position: absolute;
-  top: 225vh;
+  top: 220vh; 
+  left: 50vw; 
+  transform: translate(-50%);
   display: flex;
   justify-content: center;
   font-family: 'Lobster', cursive;
@@ -606,6 +608,116 @@ $base: 0.6rem;
   color: #fff6f6;
   width: 100%;
   height: 20vh;
+} 
+.freteText{
+  position: absolute; 
+  top: 15vh; 
+  left: 48vw;  
+  transform: translate(-50%); 
+  background-color: plum; 
+  border: 2px solid orchid; 
+  height: 6vh; 
+  width: 14vw;   
+  font-size: 30px;
+  padding-left: 2vw; 
+  border-bottom-left-radius: 16px; 
+  border-top-left-radius: 16px;   
+  color: white;
+  cursor:text;
+}   
+.freteText::placeholder{
+  color: #c093c2ac;
+}
+.freteText:focus + .freteCheck {
+  outline: 2px purple solid;
+}  
+.freteText:focus {
+  outline: 2px purple solid;
+} 
+
+.freteCheck{
+  position: absolute; 
+  top: 15vh; 
+  left: 52.01vw;  
+  background-color: plum; 
+  border: 2px solid orchid; 
+  height: 6.4vh; 
+  width: 9vw;   
+  font-size: 30px;
+  border-top-right-radius: 16px;  
+  border-bottom-right-radius: 16px;  
+  padding-left: 0.3vw; 
+  font-family: 'Lobster', cursive; 
+  color: white;
+  cursor: pointer;
+} 
+.resposta{
+  position: absolute; 
+  top: 30vh; 
+  left: 50vw; 
+  transform: translate(-50%);
+} 
+
+.switch {
+  position: absolute; 
+  top: 23.2vh; 
+  left: 39.9vw;
+  display: inline-block;
+  width: 60px;
+  height: 34px; 
+  
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: plum; 
+  border: 2px solid orchid;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #ec21f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.ask{
+  position: absolute; 
+  font-size: 1vw; 
+  width: 11vw; 
+  top: 0.4vh; 
+  left: 4.2vw;
 }
 
 

@@ -13,8 +13,12 @@ let canexec = true
 let category = document.querySelectorAll(".category")
 let InstaContainer = document.querySelectorAll(".r")
 let serverContent = undefined
-let column = document.querySelectorAll(".column")
-window.location.href= 'https://sandbox.melhorenvio.com.br/oauth/authorize?client_id=3818&redirect_uri=https://pj-homework.cloud/&response_type=code&state=teste&scope=cart-read cart-write companies-read companies-write coupons-read coupons-write notifications-read orders-read products-read products-write purchases-read shipping-calculate shipping-cancel shipping-checkout shipping-companies shipping-generate shipping-preview shipping-print shipping-share shipping-tracking ecommerce-shipping transactions-read users-read users-write'
+let column = document.querySelectorAll(".column")  
+let freteText = document.querySelector(".freteText") 
+let freteCheck = document.querySelector(".freteCheck") 
+let checkbox = document.querySelector('.checkingbox') 
+let resposta = document.querySelector(".resposta")
+
 arrow.forEach(element => {
     arrowContainer.addEventListener("mouseenter", () => {
         element.style.animationName = "none"
@@ -47,7 +51,6 @@ arrow.forEach(element => {
     })
 })
 searchico.addEventListener("click", () => {
-    console.log(Sclickcount % 2 == 0)
     if (Sclickcount % 2 == 0) {
         searchico.style.transform = "translate(-10vw, -50% ) rotate(90deg)"
         inputS.style.display = "block"
@@ -92,25 +95,41 @@ switch2.addEventListener("click", () => {
         setTimeout(() => { canexec = true }, 600)
     }
 })
-
+function freteCalc(){ 
+    
+    axios.get('https://testserver-lxpk.onrender.com/frete',{ params: { frete:freteText.value, giga:checkbox.checked } })
+    .then((response)=>{  
+        console.log(response.data)
+        let responseType = response.data[4]
+        if(checkbox.checked){responseType=response.data[0]}
+        resposta.innerHTML=`O valor do frete é ${responseType.price}R$, com um prazo de entrega de ${responseType.delivery_range.min}-${responseType.delivery_range.max} dias` 
+    
+})}
+freteCheck.addEventListener('click', freteCalc)
 function replaceTag(X) {
     let that = InstaContainer[X]
     let video = document.createElement('video');
 
     video.setAttribute('class', that.getAttribute('class'));
     video.innerHTML = `<source type="video/MP4"src=${serverContent[X].url}>`
-    video.volume = 0.3
-    video.loop = true
+    video.volume = 0.1
+    video.loop = true 
+    video.preload="auto"
     while (that.firstChild) {
         video.appendChild(that.firstChild);
     }
-    that.parentNode.replaceChild(video, that);
+    that.parentNode.replaceChild(video, that); 
+    let check = setInterval(()=>{
+        if(video.duration!=NaN){
+            video.currentTime=parseInt(video.duration)-1
+            clearInterval(check)
+            
+        }}, 100)
 }
 
 async function a() {
     let response = await fetch('https://testserver-lxpk.onrender.com/instaURLS')
-    serverContent = await response.json()
-    console.log(serverContent[x].type)
+    serverContent = await response.json() 
     for (x; x < 20; x++) {
         if (serverContent[x].type == "VIDEO") {
             replaceTag(x)
@@ -119,9 +138,19 @@ async function a() {
         }
     }
     document.querySelectorAll("video").forEach(element => {
-        console.log(element)
-        element.addEventListener("mouseover", () => { element.play() })
-        element.addEventListener("mouseout", () => { element.pause() })
+        element.first=true 
+        element.current=0
+        element.addEventListener("mouseover", () => { 
+            element.play()  
+            element.currentTime= element.current 
+            element.first=false
+        }
+    )
+        element.addEventListener("mouseout", () => { 
+            element.pause()  
+            element.current= element.currentTime
+            element.currentTime = parseInt(element.duration)-1
+        })
     })
     document.querySelectorAll(".r").forEach(container => {
         let containerID = container.className.split(' ')[1]
