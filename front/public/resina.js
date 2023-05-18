@@ -22,7 +22,8 @@ let checkbox = document.querySelector('.checkingbox')
 let resposta = document.querySelector(".resposta")
 let pets = document.querySelector(".pets")
 let columcount = 0
-let videocount = 0 
+let videocount = 0  
+let mobileFix = 20
 //end variables 
 //arrows scripts
 arrow.forEach(element => {
@@ -203,24 +204,26 @@ function columanimation(home) {
 function setBottom(top) {
     document.querySelector(".bottom-container").style.top = top + "vh"
 }  
-//videotag
-function replaceTag(X) { 
-    InstaContainer = document.querySelectorAll(".r")
-    let that = InstaContainer[X]
-    let video = document.createElement('video');
-
-    video.setAttribute('class', that.getAttribute('class'));
-    video.innerHTML = `<source type="video/MP4"src=${serverContent[X].url}>`
-    video.volume = 0.1
-    video.loop = true
-    video.preload = "auto"
-    while (that.firstChild) {
-        video.appendChild(that.firstChild);
+//page builders  
+async function buildcontainers() {  
+    columcount= 0
+    let containerIMG = document.querySelector(".news")
+    containerIMG.innerHTML="" 
+    for (x = 0; x < 15; x++) {
+        if (x % 3 == 0) {
+            columcount++
+            containerIMG.innerHTML += `<div class="column N${columcount}">`
+            document.querySelector(`.N${columcount}`).innerHTML += `<img class="r ${x + 1}">` 
+        } else {
+            document.querySelector(`.N${columcount}`).innerHTML += `<img class="r ${x + 1}">` 
+        }
     }
-    that.parentNode.replaceChild(video, that);
-    
+}    
+//build containers
+if(window.matchMedia("(max-width: 950px)").matches){ 
+    mobileFix=15
+    buildcontainers()
 }
-//page builders 
 async function getCategory(endpoint) {  
     let response = await axios.get('https://testserver-lxpk.onrender.com/'+endpoint) 
     serverContent = response.data  
@@ -248,6 +251,24 @@ async function getCategory(endpoint) {
 pets.addEventListener("click", ()=>{
     getCategory("cats")
 })
+//videotag
+function replaceTag(X) { 
+    InstaContainer = document.querySelectorAll(".r")
+    let that = InstaContainer[X] 
+    console.log(that)
+    let video = document.createElement('video');
+    video.setAttribute('class', that.getAttribute('class'));
+    video.innerHTML = `<source type="video/MP4"src=${serverContent[X].url}>`
+    video.volume = 0.1
+    video.loop = true
+    video.preload = "auto"
+    while (that.firstChild) {
+        video.appendChild(that.firstChild);
+    }
+    that.parentNode.replaceChild(video, that);
+    
+}
+
 //frete function
 function freteCalc() {
     axios.get('https://testserver-lxpk.onrender.com/frete', { params: { frete: freteText.value, giga: checkbox.checked } })
@@ -261,14 +282,15 @@ function freteCalc() {
 }
 freteCheck.addEventListener('click', freteCalc) 
 //insta function
-async function a() {
+async function a() { 
+    InstaContainer = document.querySelectorAll(".r")
     let response = await fetch('https://testserver-lxpk.onrender.com/instaURLS')
     serverContent = await response.json()
-    for (x = 0; x < 20; x++) {
+    for (x = 0; x < mobileFix; x++) {
         if (serverContent[x].type == "VIDEO") {
             replaceTag(x)
         } else {
-            InstaContainer[x].setAttribute('src', serverContent[x].url)
+            InstaContainer[x].setAttribute('src', serverContent[x].url) 
         }
     } 
     columanimation(false)

@@ -477,7 +477,7 @@ div.arrow:hover::before {
 
 .Pbody {
   background: rgb(255, 255, 255);
-  background: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 0%, rgba(113, 68, 168, 0.8407956933) 100%);
+  background: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(230, 167, 221) 0%, rgba(113, 68, 168, 0.8407956933) 100%);
   padding-right: 60px;
   height: 300vh;
   overflow-x: hidden;
@@ -816,8 +816,8 @@ polygon.arrow-top {
   left: 52.01vw;
   background-color: plum;
   border: 2px solid orchid;
-  height: 6.4vh;
-  width: 9vw;
+  height: 6.45vh;
+  width: 10vw;
   font-size: 30px;
   border-top-right-radius: 16px;
   border-bottom-right-radius: 16px;
@@ -988,6 +988,9 @@ a {
     font-size-adjust: 0;
     max-height: 300px;
   }
+  .img-logo {
+    width: 40vw;
+  }
   .text1:hover {
     top: 2.7vh;
   }
@@ -1045,6 +1048,30 @@ a {
   .chevron {
     left: 65vw;
   }
+  .Ftext {
+    font-size: 0.8em;
+    transform: translate(10%, -100%);
+  }
+  .freteCheck {
+    width: 20vmax;
+    height: 8vmax;
+    transform: translate(12vmax, 0);
+  }
+  .freteText {
+    width: 20vmax;
+    height: 7.5vmax;
+    transform: translate(-6.3vmax, 0);
+  }
+  .Frequest {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    transform: translate(-10%, -17%);
+  }
+  .resposta {
+    width: 80vw;
+    transform: translate(-33%, 10%);
+  }
 }
 @media screen and (min-height: 850px) {
   .wrapper {
@@ -1061,8 +1088,22 @@ a {
     width: 78vmin;
     transform: translate(0%, 26%);
   }
-}
-@media screen and (max-width: 450px) {
+  .Ftext {
+    font-size: 0.8em;
+    transform: translate(14%, -100%);
+  }
+  .Frequest {
+    transform: translate(-25%, -17%);
+  }
+  .freteText {
+    width: 20vmax;
+    height: 7.5vmax;
+    transform: translate(-6.3vmax, 0);
+  }
+  .resposta {
+    width: 80vw;
+    transform: translate(-13%, 10%);
+  }
   .menu-btn {
     transform: translateX(-130%);
   }
