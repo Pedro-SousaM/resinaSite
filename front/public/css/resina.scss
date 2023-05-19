@@ -786,9 +786,11 @@ $base: 0.6rem;
   margin-top: 10px;
   display: flex;
   transition: 1s;
-
+  z-index: 1;
 }
-
+.column:hover {
+  z-index: 4;
+}
 .r {
   overflow: hidden;
   background-color: gray;
@@ -808,7 +810,7 @@ $base: 0.6rem;
 
 .r:hover {
   transform: scale(1.25);
-
+  z-index: 4;
 }
 
 .freteContainer {
@@ -1090,11 +1092,11 @@ a {
   }
 
   .Pbody {
-    height: 340vh;
+    height: 280vh;
   }
 
   .bottom-container {
-    top: 344.4vh;
+    top: 284.4vh;
     height: 40vh;
     width: 110vw;
   }
@@ -1107,7 +1109,7 @@ a {
   }
 
   .r:hover {
-    transform: scale(2.0);
+    transform: scale(1.8);
   }
 
   .column {
@@ -1198,5 +1200,21 @@ a {
   .text1 {
     height: 36vh;
 
+  } 
+  .Ftext{
+    font-size: 0.8em; 
+    transform: translate(14%, -10%);
+  } 
+  .Frequest{ 
+    transform: translate(-25%,17%);
+  }  
+  .freteText{
+    width: 20vmax; 
+    height: 7.5vmax; 
+    transform: translate(-6.3vmax, 0);
+  }  
+  .resposta{
+    width: 80vw; 
+    transform: translate(-13%, 10%);
   }
 }

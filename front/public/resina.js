@@ -7,7 +7,7 @@ let arrow = document.querySelectorAll(".arrow")
 let sidebar = document.querySelector(".side-menu")
 let searchico = document.querySelector(".c3")
 let inputS = document.querySelector(".search")
-let Pbody = document.querySelector(".Pbody") 
+let Pbody = document.querySelector(".Pbody")
 let photos = document.querySelectorAll(".home-photo")
 let switch1 = document.querySelector(".switch1")
 let switch2 = document.querySelector(".switch2")
@@ -22,8 +22,14 @@ let checkbox = document.querySelector('.checkingbox')
 let resposta = document.querySelector(".resposta")
 let pets = document.querySelector(".pets")
 let columcount = 0
-let videocount = 0  
+let videocount = 0
 let mobileFix = 20
+let mobileFixNumber = 5 
+
+document.querySelectorAll(".refreshbutton").forEach(button=>button.addEventListener("click",()=>{location.reload()})) 
+if (window.matchMedia("(max-width: 950px)").matches) {
+    mobileFixNumber = 3
+} 
 //end variables 
 //arrows scripts
 arrow.forEach(element => {
@@ -35,14 +41,22 @@ arrow.forEach(element => {
         if (Aclickcount % 2 == 0) {
 
             element.style.animationName = "none"
-            element.style.left = "33vw"
-            sidebar.style.width = "28vw"
+            if (window.matchMedia("(max-width: 950px)").matches) {
+                element.style.left = "73vw"
+                sidebar.style.width = "68vw"
+                category.forEach(category => category.style.fontSize = "9.7vw")
+            } else {
+                element.style.left = "33vw"
+                sidebar.style.width = "28vw"
+                category.forEach(category => category.style.fontSize = "3.3vw")
+            }
+
             element.style.transform = "rotate(-135deg)"
             Pbody.style.filter = "blur(7px)"
             category.forEach(element => {
                 element.style.opacity = "1"
-                setTimeout(() => { document.documentElement.scrollTop = currentTop }, 1) 
-                element.addEventListener('click', ()=>{ document.querySelector("html").style.scrollBehavior='none',document.documentElement.scrollTop = 0})
+                setTimeout(() => { document.documentElement.scrollTop = currentTop }, 1)
+                element.addEventListener('click', () => { document.querySelector("html").style.scrollBehavior = 'none', document.documentElement.scrollTop = 0 })
             })
         }
         else {
@@ -102,33 +116,33 @@ switch2.addEventListener("click", () => {
         p4.className = p4.className.split(" ")[0] + " p3 home-photo"
         setTimeout(() => { canexec = true }, 600)
     }
-})  
+})
 //photo script 
-photos.forEach(photo => { 
-    photo.addEventListener("mouseover", () => { 
-        let px950 = window.matchMedia("(max-width: 950px)").matches  
-        if(px950){
-            photo.style.transform="translate(-23vmax, 51vmax)"
-        }
-    }) 
-    photo.addEventListener("mouseout", () => {  
+photos.forEach(photo => {
+    photo.addEventListener("mouseover", () => {
         let px950 = window.matchMedia("(max-width: 950px)").matches
-        if(px950){
-            photo.style.transform="translate(-16vmax, 51vmax)"
+        if (px950) {
+            photo.style.transform = "translate(-23vmax, 51vmax)"
+        }
+    })
+    photo.addEventListener("mouseout", () => {
+        let px950 = window.matchMedia("(max-width: 950px)").matches
+        if (px950) {
+            photo.style.transform = "translate(-16vmax, 51vmax)"
         }
     })
 })
 //midia animation
-function columanimation(home) {  
-    let px950 = window.matchMedia("(max-width: 950px)").matches  
+function columanimation(home) {
+    let px950 = window.matchMedia("(max-width: 950px)").matches
     console.log(document.querySelectorAll("video"))
     document.querySelectorAll("video").forEach(element => {
-        let current = 0   
-        if(!home){
+        let current = 0
+        if (!home) {
             let check = setInterval(() => {
                 if (element.duration != NaN) {
-                    element.currentTime = parseFloat(element.duration)-1
-                    clearInterval(check) 
+                    element.currentTime = parseFloat(element.duration) - 1
+                    clearInterval(check)
                     console.log(element.duration, element.currentTime)
                 }
             }, 100)
@@ -141,49 +155,50 @@ function columanimation(home) {
         element.addEventListener("mouseout", () => {
             element.pause()
             current = element.currentTime
-            setTimeout(()=>{element.currentTime = parseInt(element.duration) - 1}, 10) 
+            setTimeout(() => { element.currentTime = parseInt(element.duration) - 1 }, 10)
         })
     })
     document.querySelectorAll(".r").forEach(container => {
         let containerID = container.className.split(' ')[1]
-        let thisColum = document.querySelector(`.N${Math.ceil(containerID / 5)}`)
+        let thisColum = document.querySelector(`.N${Math.ceil(containerID / mobileFixNumber)}`)
         container.addEventListener("mouseout", () => {
-            if (containerID % 5 == 0 && containerID != 0) {
-                document.querySelector(`.N${Math.ceil(containerID / 5)}`).style.transform = "translateX(0px)"
-            } 
-            if(px950){
-            container.style.margin = "2px"
-            container.style.marginTop = "2px"
-        }else{
-            container.style.margin = "10px"
-            container.style.marginTop = "10px"
-        }
+            if (containerID % mobileFixNumber == 0 && containerID != 0) {
+                document.querySelector(`.N${Math.ceil(containerID / mobileFixNumber)}`).style.transform = "translateX(0px)"
+            }
+            if (px950) {
+                container.style.margin = "2px"
+                container.style.marginTop = "0px"
+            } else {
+                container.style.margin = "10px"
+                container.style.marginTop = "10px"
+            }
             document.querySelectorAll(".column").forEach(colum => {
-              if(px950){
-                colum.style.margin = "2px"
-              }  
-              else{colum.style.margin = "13px"}
+                if (px950) {
+                    colum.style.margin = "2px"
+                    colum.style.marginTop = "1px"
+                }
+                else { colum.style.margin = "13px" }
             })
         }
         )
         container.addEventListener("mouseover", () => {
             console.log(containerID)
-            if (containerID % 5 == 0 && containerID != 0) {
-               if(px950){ thisColum.style.transform = "translateX(-10px)"}else{
-                thisColum.style.transform = "translateX(-110px)"
-               }
-            } 
-            if(px950){
+            if (containerID % mobileFixNumber == 0 && containerID != 0) {
+                if (px950) { thisColum.style.transform = "translateX(-10vw)" } else {
+                    thisColum.style.transform = "translateX(-110px)"
+                }
+            }
+            if (px950) {
                 container.style.margin = "40px"
-                container.style.marginTop = "10px"  
-                thisColum.style.marginBottom = "30px"
-                thisColum.style.marginBottom = "90px"
-            }else{
-            container.style.margin = "50px"
-            container.style.marginTop = "10px"
-            thisColum.style.margin = "50px"
-            } 
-            
+                container.style.marginTop = "0px"
+                thisColum.style.marginBottom = "20px"
+                thisColum.style.marginTop = "20px"
+            } else {
+                container.style.margin = "50px"
+                container.style.marginTop = "10px"
+                thisColum.style.margin = "50px"
+            }
+
         })
     })
     document.querySelectorAll("video").forEach(element => {
@@ -200,61 +215,71 @@ function columanimation(home) {
             element.current = element.currentTime
             element.currentTime = parseInt(element.duration) - 1
         })
-    })}
+    })
+}
 function setBottom(top) {
     document.querySelector(".bottom-container").style.top = top + "vh"
-}  
+}
 //page builders  
-async function buildcontainers() {  
-    columcount= 0
+async function buildcontainers() {
+    columcount = 0
     let containerIMG = document.querySelector(".news")
-    containerIMG.innerHTML="" 
+    containerIMG.innerHTML = ""
     for (x = 0; x < 15; x++) {
         if (x % 3 == 0) {
             columcount++
             containerIMG.innerHTML += `<div class="column N${columcount}">`
-            document.querySelector(`.N${columcount}`).innerHTML += `<img class="r ${x + 1}">` 
+            document.querySelector(`.N${columcount}`).innerHTML += `<img class="r ${x + 1}">`
         } else {
-            document.querySelector(`.N${columcount}`).innerHTML += `<img class="r ${x + 1}">` 
+            document.querySelector(`.N${columcount}`).innerHTML += `<img class="r ${x + 1}">`
         }
     }
-}    
-//build containers
-if(window.matchMedia("(max-width: 950px)").matches){ 
-    mobileFix=15
-    buildcontainers()
 }
-async function getCategory(endpoint) {  
-    let response = await axios.get('https://testserver-lxpk.onrender.com/'+endpoint) 
-    serverContent = response.data  
+//build containers
+if (window.matchMedia("(max-width: 950px)").matches) {
+    mobileFix = 15
+    buildcontainers()
+
+}
+async function getCategory(endpoint) {
+    let response = await axios.get('https://testserver-lxpk.onrender.com/' + endpoint)
+    serverContent = response.data
     console.log(response)
-    columcount= 0
-    Pbody.style.height = "100vh"
+    columcount = 0
+    if (window.matchMedia("(max-width:950px)").matches) { 
+        setBottom(80)
+        document.querySelector('.Pbody').style.height = "70vh" 
+        document.querySelector('body').style.height = "70vh" 
+    }
     Pbody.innerHTML = `<div class="news">`
-    let containerIMG = document.querySelector(".news")
-    containerIMG.style.top = 4 + "vh"
+    let containerIMG = document.querySelector(".news") 
+    containerIMG.style.top = 4 + "vh" 
+    containerIMG.style.height = `${40}vh`
     for (x = 0; x < response.data.length; x++) {
-        if (x % 5 == 0) {
+        if (x % mobileFixNumber == 0) {
             columcount++
             containerIMG.innerHTML += `<div class="column N${columcount}">`
-            document.querySelector(`.N${columcount}`).innerHTML += `<img class="r ${x + 1}">` 
+            document.querySelector(`.N${columcount}`).innerHTML += `<img class="r ${x + 1}">`
             replaceTag(x)
         } else {
-            document.querySelector(`.N${columcount}`).innerHTML += `<img class="r ${x + 1}">` 
+            document.querySelector(`.N${columcount}`).innerHTML += `<img class="r ${x + 1}">`
             replaceTag(x)
+        }
+        if (window.matchMedia("(max-width: 950px)").matches) {
+            document.querySelectorAll(".column").forEach(column => column.style.height = "15vh")
+            document.querySelectorAll(".r").forEach((column) => { column.style.height = "15vh", column.style.width = "29vw" })
         }
     }
     columanimation(false)
-    setBottom(100)
-}  
+}
 
-pets.addEventListener("click", ()=>{
+pets.addEventListener("click", () => {
     getCategory("cats")
 })
 //videotag
-function replaceTag(X) { 
+function replaceTag(X) {
     InstaContainer = document.querySelectorAll(".r")
-    let that = InstaContainer[X] 
+    let that = InstaContainer[X]
     console.log(that)
     let video = document.createElement('video');
     video.setAttribute('class', that.getAttribute('class'));
@@ -266,7 +291,7 @@ function replaceTag(X) {
         video.appendChild(that.firstChild);
     }
     that.parentNode.replaceChild(video, that);
-    
+
 }
 
 //frete function
@@ -280,9 +305,9 @@ function freteCalc() {
 
         })
 }
-freteCheck.addEventListener('click', freteCalc) 
+freteCheck.addEventListener('click', freteCalc)
 //insta function
-async function a() { 
+async function a() {
     InstaContainer = document.querySelectorAll(".r")
     let response = await fetch('https://testserver-lxpk.onrender.com/instaURLS')
     serverContent = await response.json()
@@ -290,9 +315,9 @@ async function a() {
         if (serverContent[x].type == "VIDEO") {
             replaceTag(x)
         } else {
-            InstaContainer[x].setAttribute('src', serverContent[x].url) 
+            InstaContainer[x].setAttribute('src', serverContent[x].url)
         }
-    } 
+    }
     columanimation(false)
 }
 a()

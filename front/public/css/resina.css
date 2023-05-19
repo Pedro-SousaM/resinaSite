@@ -739,6 +739,11 @@ polygon.arrow-top {
   margin-top: 10px;
   display: flex;
   transition: 1s;
+  z-index: 1;
+}
+
+.column:hover {
+  z-index: 4;
 }
 
 .r {
@@ -761,6 +766,7 @@ polygon.arrow-top {
 
 .r:hover {
   transform: scale(1.25);
+  z-index: 4;
 }
 
 .freteContainer {
@@ -1025,10 +1031,10 @@ a {
     width: 45%;
   }
   .Pbody {
-    height: 340vh;
+    height: 280vh;
   }
   .bottom-container {
-    top: 344.4vh;
+    top: 284.4vh;
     height: 40vh;
     width: 110vw;
   }
@@ -1039,7 +1045,7 @@ a {
     width: 7em;
   }
   .r:hover {
-    transform: scale(2);
+    transform: scale(1.8);
   }
   .column {
     margin: 0px;
@@ -1120,5 +1126,21 @@ a {
 @media screen and (max-width: 410px) {
   .text1 {
     height: 36vh;
+  }
+  .Ftext {
+    font-size: 0.8em;
+    transform: translate(14%, -10%);
+  }
+  .Frequest {
+    transform: translate(-25%, 17%);
+  }
+  .freteText {
+    width: 20vmax;
+    height: 7.5vmax;
+    transform: translate(-6.3vmax, 0);
+  }
+  .resposta {
+    width: 80vw;
+    transform: translate(-13%, 10%);
   }
 }/*# sourceMappingURL=resina.css.map */
