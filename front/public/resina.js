@@ -122,7 +122,7 @@ photos.forEach(photo => {
     photo.addEventListener("mouseover", () => {
         let px950 = window.matchMedia("(max-width: 950px)").matches
         if (px950) {
-            photo.style.transform = "translate(-23vmax, 51vmax)"
+            photo.style.transform = "translate(-28.4vmax, 51vmax)"
         }
     })
     photo.addEventListener("mouseout", () => {
@@ -246,11 +246,6 @@ async function getCategory(endpoint) {
     serverContent = response.data
     console.log(response)
     columcount = 0
-    if (window.matchMedia("(max-width:950px)").matches) { 
-        setBottom(80)
-        document.querySelector('.Pbody').style.height = "70vh" 
-        document.querySelector('body').style.height = "70vh" 
-    }
     Pbody.innerHTML = `<div class="news">`
     let containerIMG = document.querySelector(".news") 
     containerIMG.style.top = 4 + "vh" 

@@ -903,7 +903,7 @@ input:checked + .slider:before {
   width: 110vw;
   background-color: rgb(75, 65, 65);
   position: absolute;
-  top: 300vh;
+  top: 298vh;
   transition: 1s;
   z-index: 0;
   color: white;
@@ -983,13 +983,19 @@ a {
   .chevron {
     left: 70vw;
   }
+  .bottom-container {
+    font-size: 3.3vw;
+  }
+  .bottom-tex {
+    font-size: 3.5vw;
+  }
 }
 @media screen and (max-width: 950px) {
   .text1 {
     height: 43vh;
-    width: 50vh;
+    width: 66vmin;
     font-size: 1.2em;
-    transform: translate(10%, 36%);
+    transform: translate(7%, 36%);
     top: 3vh;
     font-size-adjust: 0;
     max-height: 300px;
@@ -1005,7 +1011,7 @@ a {
     height: 39vmax;
   }
   .photo-container {
-    transform: translate(-16vmax, 51vmax);
+    transform: translate(-22vmax, 51vmax);
   }
   .news-container {
     transform: translateY(49vmax);
@@ -1032,11 +1038,12 @@ a {
   }
   .Pbody {
     height: 280vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .bottom-container {
-    top: 284.4vh;
-    height: 40vh;
-    width: 110vw;
+    display: none;
   }
   .r {
     border-radius: 10px;
@@ -1074,10 +1081,6 @@ a {
     width: 100vw;
     transform: translate(-10%, -17%);
   }
-  .resposta {
-    width: 80vw;
-    transform: translate(-33%, 10%);
-  }
 }
 @media screen and (min-height: 850px) {
   .wrapper {
@@ -1091,10 +1094,12 @@ a {
 }
 @media screen and (max-width: 450px) {
   .text1 {
-    width: 78vmin;
+    width: 74vmin;
     transform: translate(0%, 26%);
+    font-size: 4.6vw;
   }
   .Ftext {
+    width: 80vw;
     font-size: 0.8em;
     transform: translate(14%, -100%);
   }
@@ -1128,7 +1133,8 @@ a {
     height: 36vh;
   }
   .Ftext {
-    font-size: 0.8em;
+    font-size: 0.6em;
+    width: 80vw;
     transform: translate(14%, -10%);
   }
   .Frequest {
